@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <!-- MainActivity.class -->
+    <string name="popular">most popular</string>
+    <string name="top_rated">highest rated</string>
+    <string name="spinner_sorting">Sort by</string>
+    <string-array name="spinner_items">
+        <item>@string/popular</item>
+        <item>@string/top_rated</item>
+    </string-array>
+    <string name="img_view_grid_views_content_description">Image of the grid thumbnails</string>
+
+    <!-- DetailActivity.class -->
+    <string name="img_view_content_description">Image of the movie poster</string>
+    <string name="release_date">Release date:&#160;</string>
+    <string name="vote_average">Average rating:&#160;</string>
+    <string name="plot_synopsis">Plot synopsis:</string>
+</resources>

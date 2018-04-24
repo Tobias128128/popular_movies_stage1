@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- No scale with respect to ratio because some movie posters had lower values of height  - didn't look good with spaces-->
+    <ImageView
+        android:id="@+id/imgView_moviePoster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/img_view_grid_views_content_description" />
+
+</LinearLayout>
