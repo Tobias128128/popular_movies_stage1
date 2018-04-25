@@ -2,6 +2,8 @@ package com.example.android.popularmoviesstage1.network_utilities;
 
 import android.net.Uri;
 
+import com.example.android.popularmoviesstage1.BuildConfig;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -17,7 +19,7 @@ public class DatabaseConnection {
     private final static String PARAM_API_KEY = "api_key";
 
     private final static String LANGUAGE_EN_US = "en_US";
-    private final static String API_KEY = "";
+    private final static String API_KEY = BuildConfig.API_KEY;
 
     public static URL buildUrl(String sortBy) {
         Uri builtUri = Uri.parse(MOVIE_DB_BASE_URL).buildUpon()

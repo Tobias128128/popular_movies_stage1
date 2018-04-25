@@ -10,6 +10,7 @@
         <item>@string/top_rated</item>
     </string-array>
     <string name="img_view_grid_views_content_description">Image of the grid thumbnails</string>
+    <string name="no_connection">Please check your internet connection</string>
 
     <!-- DetailActivity.class -->
     <string name="img_view_content_description">Image of the movie poster</string>

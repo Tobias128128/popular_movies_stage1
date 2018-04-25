@@ -10,14 +10,17 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
 
     // I decided to leave the variables here for later manipulations.
-    private ImageView img_view_movie_poster;
-    private TextView txt_view_title;
-    private TextView txt_view_release_date;
-    private TextView txt_view_vote_average;
-    private TextView txt_view_plot_synopsis;
+    @BindView(R.id.img_view_movie_poster) ImageView img_view_movie_poster;
+    @BindView(R.id.txt_view_title) TextView txt_view_title;
+    @BindView(R.id.txt_view_release_date) TextView txt_view_release_date;
+    @BindView(R.id.txt_view_vote_average) TextView txt_view_vote_average;
+    @BindView(R.id.txt_view_plot_synopsis) TextView txt_view_plot_synopsis;
 
     private final static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
     private final static String IMAGE_SIZE = "w185/";
@@ -26,12 +29,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-        img_view_movie_poster = findViewById(R.id.img_view_movie_poster);
-        txt_view_title = findViewById(R.id.txt_view_title);
-        txt_view_release_date = findViewById(R.id.txt_view_release_date);
-        txt_view_vote_average = findViewById(R.id.txt_view_vote_average);
-        txt_view_plot_synopsis = findViewById(R.id.txt_view_plot_synopsis);
+        ButterKnife.bind(this);
 
         Intent former_intent = getIntent();
         if (former_intent != null) {

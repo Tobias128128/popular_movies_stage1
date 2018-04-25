@@ -2,6 +2,8 @@ package com.example.android.popularmoviesstage1;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.android.popularmoviesstage1.network_utilities.DatabaseConnection;
 import com.example.android.popularmoviesstage1.network_utilities.FetchMovieData;
@@ -110,18 +113,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if (!first_start || !saved_instance) {
-            String selectedItem = adapterView.getItemAtPosition(i).toString();
-            URL url;
-            FetchMovieData fetchMovieData = new FetchMovieData(gridViewAdapter, getWindow().getDecorView().getRootView());
-
-            if (selectedItem.equals(getString(R.string.popular))) {
-                url = DatabaseConnection.buildUrl(getResources().getResourceEntryName(R.string.popular));
-                fetchMovieData.execute(url);
-            } else {
-                if (selectedItem.equals(getString(R.string.top_rated))) {
-                    url = DatabaseConnection.buildUrl(getResources().getResourceEntryName(R.string.top_rated));
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            boolean isConnected = (activeNetwork != null) && (activeNetwork.isConnectedOrConnecting());
+            if (isConnected) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                URL url;
+                FetchMovieData fetchMovieData = new FetchMovieData(gridViewAdapter, getWindow().getDecorView().getRootView());
+                if (selectedItem.equals(getString(R.string.popular))) {
+                    url = DatabaseConnection.buildUrl(getResources().getResourceEntryName(R.string.popular));
                     fetchMovieData.execute(url);
+                } else {
+                    if (selectedItem.equals(getString(R.string.top_rated))) {
+                        url = DatabaseConnection.buildUrl(getResources().getResourceEntryName(R.string.top_rated));
+                        fetchMovieData.execute(url);
+                    }
                 }
+            }else
+            {
+                Toast toast = Toast.makeText(this, getString(R.string.no_connection),Toast.LENGTH_LONG);
+                toast.show();
             }
         }
         first_start = false;
